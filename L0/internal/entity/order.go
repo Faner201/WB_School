@@ -10,7 +10,7 @@ type Order struct {
 	Payment           Payment   `json:"payment" validate:"required"`
 	Items             []Item    `json:"items" validate:"required,dive,required"`
 	Locale            string    `db:"locale" json:"locale" validate:"required"`
-	InternalSignature string    `db:"internal_signature" json:"internal_signature" validate:"required"`
+	InternalSignature string    `db:"internal_signature" json:"internal_signature"`
 	CustomerID        string    `db:"customer_id" json:"customer_id" validate:"required"`
 	DeliveryService   string    `db:"delivery_service" json:"delivery_service" validate:"required"`
 	Shardkey          string    `db:"shardkey" json:"shardkey" validate:"required"`
@@ -31,7 +31,7 @@ type Delivery struct {
 
 type Payment struct {
 	Transaction  string `db:"transaction" json:"transaction" validate:"required"`
-	RequestID    string `db:"request_id" json:"request_id" validate:"required"`
+	RequestID    string `db:"request_id" json:"request_id"`
 	Currency     string `db:"currency" json:"currency" validate:"required"`
 	Provider     string `db:"provider" json:"provider" validate:"required"`
 	Amount       int    `db:"amount" json:"amount" validate:"numeric"`
