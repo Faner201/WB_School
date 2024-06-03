@@ -4,7 +4,6 @@ import (
 	"L0/internal/repository"
 	"L0/internal/util"
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"os"
 	"os/signal"
@@ -71,9 +70,9 @@ func (s *Server) Start() error {
 	go func() {
 		<-sigs
 		s.logger.Logger.Info().Msg("received shutdown signal")
-		s.server.Close()
-		s.repos.Close()
 		ns.Close()
+		s.repos.Close()
+		s.server.Close()
 		os.Exit(0)
 	}()
 
@@ -82,8 +81,6 @@ func (s *Server) Start() error {
 
 func (s *Server) hadlerGetOrder(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
-
-	fmt.Println(id)
 
 	order, ok := s.cache.GetOrderByUID(id)
 	if !ok {

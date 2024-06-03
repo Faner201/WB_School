@@ -64,6 +64,7 @@ func (r *Repository) NatsGenerateDate(ns stan.Conn) error {
 			return err
 		}
 	}
+	file.Close()
 	return nil
 }
 
@@ -158,7 +159,6 @@ func checkExistenceFile(name string) (*os.File, error) {
 
 func saverOrderUIDforFile(orderUID string, file *os.File) error {
 	orderUID = orderUID + "\n"
-	defer file.Close()
 
 	if _, err := file.Write([]byte(orderUID)); err != nil {
 		return err
